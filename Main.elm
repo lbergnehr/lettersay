@@ -1,31 +1,40 @@
-import Html exposing (Html, input, div)
-
+import Html exposing (Html, input, div, text)
+import Html.Events exposing (onInput)
+import SpeechSynthesis exposing (..)
 
 main =
-  Html.beginnerProgram { model = model, view = view, update = update }
-
+  Html.program {
+    init = init,
+    update = update,
+    subscriptions = subscriptions,
+    view = view
+  }
 
 -- MODEL
 
 type alias Model = String
 
-model : Model
-model = ""
-
+init : (Model, Cmd msg)
+init = ("", Cmd.none)
 
 -- UPDATE
 
+subscriptions : Model -> Sub msg
+subscriptions _ = Sub.none
+
 type Msg = NewInput String
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    NewInput str -> str
-
+    NewInput str -> (model, say str)
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
   div []
-    [ input [] [] ]
+    [
+      input [ onInput NewInput ] [],
+      div [] [ text model ]
+    ]
