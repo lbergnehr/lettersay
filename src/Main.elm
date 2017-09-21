@@ -1,5 +1,6 @@
-import Html exposing (Html, input, div, text)
+import Html exposing (Html, input, textarea, div, text)
 import Html.Events exposing (onInput)
+import Html.Attributes exposing (class, autofocus, placeholder)
 import SpeechSynthesis exposing (..)
 
 main =
@@ -33,8 +34,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div []
+  div [ class "container" ]
     [
-      input [ onInput NewInput ] [],
-      div [] [ text model ]
+      textarea [ onInput NewInput, autofocus True ] []
     ]
