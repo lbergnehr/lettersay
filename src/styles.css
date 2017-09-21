@@ -4,12 +4,10 @@
 }
 
 textarea {
-  /* text-align: center; */
   border-style: none;
   outline: none;
   text-transform: uppercase;
   font-size: 15vw;
   max-width: 90%;
   margin: 5% auto;
-  /* word-break: break-word; */
 }
